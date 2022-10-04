@@ -16,5 +16,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3    
-    - run: echo "Hello world from Udacity students live session"
-    - run: ls -l
+    - run: docker-compose -f docker-compose-build.yaml build --parallel
+    - run: docker tag udagram-frontend:local joylinemaps/udagram-frontend:v1
+    - run: docker tag udagram-api-user joylinemaps/udagram-api-user:v1
+    - run: docker tag udagram-api-feed joylinemaps/udagram-api-feed:v1
+    - run: docker tag reverseproxy joylinemaps/reverseproxy:v1
+    - run: docker push joylinemaps/udagram-frontend:v1
+    - run: docker push joylinemaps/udagram-api-user:v1
+    - run: docker push joylinemaps/udagram-api-feed:v1
+    - run: docker push joylinemaps/reverseproxy:v1
