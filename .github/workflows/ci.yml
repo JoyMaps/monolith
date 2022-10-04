@@ -21,6 +21,7 @@ jobs:
     - run: docker tag udagram-api-user joylinemaps/udagram-api-user:v1
     - run: docker tag udagram-api-feed joylinemaps/udagram-api-feed:v1
     - run: docker tag reverseproxy joylinemaps/reverseproxy:v1
+    - run: echo "${{secrets.DOCKER_PASSWORD}}" | docker login -u "${{secrets.DOCKER_USERNAME}}" --password-stdin
     - run: docker push joylinemaps/udagram-frontend:v1
     - run: docker push joylinemaps/udagram-api-user:v1
     - run: docker push joylinemaps/udagram-api-feed:v1
